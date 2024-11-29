@@ -2,7 +2,9 @@
 using ECommerce.Api.Customers.Db;
 using ECommerce.Api.Customers.Interfaces;
 using ECommerce.Api.Customers.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,12 +40,27 @@ namespace ECommerce.Api.Customers.Providers
             }
         }
 
-        public Task<(bool IsSuccess, Models.Customer Customer, string ErrorMessage)> GetCustomerAsync(int id)
+
+        public async Task<(bool IsSuccess, IEnumerable<Models.Customer> Customers, string ErrorMessage)> GetCustomersAsync()
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var customers = await dbContext.Customers.ToListAsync();
+                if (customers != null && customers.Any())
+                {
+                   var result = mapper.Map<IEnumerable<Db.Customer>, IEnumerable<Models.Customer>>(customers);
+                    return (true, result, null);
+                }
+                return(false, null, "Not Found");
+            }
+            catch (Exception ex)
+            {
+                logger?.LogError(ex.ToString());
+                return (false, null, ex.Message);
+            }
         }
 
-        public Task<(bool IsSuccess, IEnumerable<Models.Customer> Customers, string ErrorMessage)> GetCustomersAsync()
+        public Task<(bool IsSuccess, Models.Customer Customer, string ErrorMessage)> GetCustomerAsync(int id)
         {
             throw new System.NotImplementedException();
         }
