@@ -60,9 +60,24 @@ namespace ECommerce.Api.Customers.Providers
             }
         }
 
-        public Task<(bool IsSuccess, Models.Customer Customer, string ErrorMessage)> GetCustomerAsync(int id)
+        public async Task<(bool IsSuccess, Models.Customer Customer, string ErrorMessage)> GetCustomerAsync(int id)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var customer = await dbContext.Customers.FirstOrDefaultAsync(p => p.Id == id);
+
+                if (customer != null)
+                {
+                    var result = mapper.Map<Db.Customer, Models.Customer>(customer);
+                    return (true, result, null);
+                }
+                return (false, null, "Not Found");
+            }
+            catch (Exception ex)
+            {
+                logger?.LogError(ex.ToString());
+                return (false, null, ex.Message);
+            }
         }
     }
 }
