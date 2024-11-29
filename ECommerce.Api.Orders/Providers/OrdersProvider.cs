@@ -75,6 +75,16 @@ namespace ECommerce.Api.Orders.Providers
             }
         }
 
+        public Task<(bool IsSuccess, IEnumerable<Models.Order> Orders, string ErrorMessage)> GetOrderAsync(int customerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<(bool IsSuccess, IEnumerable<Models.Order> Orders, string ErrorMessage)> GetOrdersAsync()
+        {
+            throw new NotImplementedException();
+        }
+
 
     }
 }
