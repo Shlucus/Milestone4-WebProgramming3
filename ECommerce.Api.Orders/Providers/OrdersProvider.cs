@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ECommerce.Api.Orders.Providers
@@ -75,15 +76,30 @@ namespace ECommerce.Api.Orders.Providers
             }
         }
 
+        public async Task<(bool IsSuccess, IEnumerable<Models.Order> Orders, string ErrorMessage)> GetOrdersAsync()
+        {
+            try
+            {
+                var orders = await dbContext.Orders.ToListAsync();
+                if (orders != null && orders.Any())
+                {
+                    var result = mapper.Map<IEnumerable<Db.Order>, IEnumerable<Models.Order>>(orders);
+                    return (true, result, null);
+                }
+                return (false, null, "Not found");
+            }
+            catch (Exception ex)
+            {
+                logger?.LogError(ex.ToString());
+                return (false, null, ex.Message);
+            }
+        }
+
         public Task<(bool IsSuccess, IEnumerable<Models.Order> Orders, string ErrorMessage)> GetOrderAsync(int customerId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<(bool IsSuccess, IEnumerable<Models.Order> Orders, string ErrorMessage)> GetOrdersAsync()
-        {
-            throw new NotImplementedException();
-        }
 
 
     }
