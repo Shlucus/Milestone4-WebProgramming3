@@ -4,6 +4,17 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Api.Orders.Controllers
 {
+
+    /*Course: 		Web Programming 3
+* Assessment: 	Milestone 4
+* Created by: 	Lucas Lalumière - 2278139
+* Date: 		28 11 2024
+* Class Name: 	OrdersController.cs
+* Description: 	This controller is responsible for handling the order requests. It uses the IOrdersProvider interface to get the orders.
+* Time for Task: 6 hours
+*/
+
+
     [ApiController]
     [Route("api/orders")]
     public class OrdersController : ControllerBase

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Api.Search.Services
 {
+
     public class CustomersService : ICustomersService
     {
         private readonly IHttpClientFactory httpClientFactory;

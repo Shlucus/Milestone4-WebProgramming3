@@ -5,6 +5,17 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Api.Search.Controllers
 {
+
+    /*Course: 		Web Programming 3
+* Assessment: 	Milestone 4
+* Created by: 	Lucas Lalumière - 2278139
+* Date: 		28 11 2024
+* Class Name: 	SearchController.cs
+* Description: 	This controller is responsible for handling the search requests. It uses the ISearchService interface to get the search results.
+* Time for Task: 6 hours
+    */
+
+
     [ApiController]
     [Route("api/search")]
     public class SearchController : ControllerBase

@@ -7,6 +7,17 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Api.Customers.Controllers
 {
+
+    /*Course: 		Web Programming 3
+* Assessment: 	Milestone 4
+* Created by: 	Lucas Lalumière - 2278139
+* Date: 		28 11 2024
+* Class Name: 	CustomersController.cs
+* Description: 	This controller is responsible for handling the customer requests. It uses the ICustomersProvider interface to get the customers.
+* Time for Task: 6 hours
+*/
+
+
     [ApiController]
     [Route("api/customers")]
     public class CustomersController : ControllerBase
