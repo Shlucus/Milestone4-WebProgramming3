@@ -9,7 +9,7 @@ namespace ECommerce.Api.Orders.Interfaces
 
         //Note: GetOrdersAsync(int customerId) methods returns a list of Orders for the provided customerId. 
         //It does not return one order for the provided id. 
-        Task<(bool IsSuccess, IEnumerable<Models.Order> Orders, string ErrorMessage)> GetOrderAsync(int customerId);
+        Task<(bool IsSuccess, IEnumerable<Models.Order> Orders, string ErrorMessage)> GetOrdersAsync(int customerId);
 
     }
 }
