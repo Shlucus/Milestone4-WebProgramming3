@@ -45,10 +45,12 @@ namespace ECommerce.Api.Customers.Providers
         {
             try
             {
+                logger?.LogInformation("Querying customers");
                 var customers = await dbContext.Customers.ToListAsync();
                 if (customers != null && customers.Any())
                 {
-                   var result = mapper.Map<IEnumerable<Db.Customer>, IEnumerable<Models.Customer>>(customers);
+                   logger?.LogInformation($"{customers.Count} customer(s) found");
+                    var result = mapper.Map<IEnumerable<Db.Customer>, IEnumerable<Models.Customer>>(customers);
                     return (true, result, null);
                 }
                 return(false, null, "Not Found");
@@ -64,10 +66,12 @@ namespace ECommerce.Api.Customers.Providers
         {
             try
             {
+                logger?.LogInformation("Querying customer");
                 var customer = await dbContext.Customers.FirstOrDefaultAsync(p => p.Id == id);
 
                 if (customer != null)
                 {
+                    logger?.LogInformation("Customer found");
                     var result = mapper.Map<Db.Customer, Models.Customer>(customer);
                     return (true, result, null);
                 }
