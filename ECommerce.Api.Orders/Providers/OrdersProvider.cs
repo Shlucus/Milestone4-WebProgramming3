@@ -80,7 +80,9 @@ namespace ECommerce.Api.Orders.Providers
         {
             try
             {
-                var orders = await dbContext.Orders.ToListAsync();
+                var orders = await dbContext.Orders
+                    .Include(o => o.Items)
+                    .ToListAsync();
                 if (orders != null && orders.Any())
                 {
                     var result = mapper.Map<IEnumerable<Db.Order>, IEnumerable<Models.Order>>(orders);

@@ -10,9 +10,10 @@ namespace ECommerce.Api.Search.Controllers
     public class SearchController : ControllerBase
     {
         private readonly ISearchService searchService;
+
         public SearchController(ISearchService searchService)
         {
-               this.searchService = searchService;
+            this.searchService = searchService;
         }
 
         [HttpPost]
